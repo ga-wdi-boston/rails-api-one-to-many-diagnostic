@@ -5,7 +5,10 @@ Place your responses inside the fenced code-blocks where indivated by comments.
 1.  What is one purpose for having relationships in our API?
 
 ```sh
-  # < Your Response Here >
+
+Relationships let us connect data (and establish how that data is connected)
+without having to replicate that information across tables.
+
 ```
 
 1.  Provide a database table structure and explain the Entity Relationship
@@ -14,25 +17,47 @@ A `Student` has a `given_name`, `surname`, `hometown` and `nickname` and a
 `Program` has `state_date`, `end_date`, and `market`.
 
 ```sh
-  # < Your Response Here >
+
+Note: interpreting "one-to-many relationship for Students and Programs" to
+mean "one student, many programs."
+
+Student
+- given_name
+- surname
+- hometown
+- nickname
+
+Program
+- start_date
+- end_date
+- market
+- student_id
+
+
 ```
 
 1.  For the above example, what needs to be added to the Model files?
 
 ```rb
 class Student < ActiveRecord::Base
+  has_many :programs
 end
 ```
 
 ```rb
 class Program < ActiveRecord::Base
+  belongs_to :student
 end
 ```
 
 1.  What is the purpose of our `schema.rb` file? How does it differ from a migration?
 
 ```sh
-  # < Your Response Here >
+
+The schema.rb file describes the current state of the database based on the
+migrations that have been run. It doesn't affect the state of the database,
+unlike migrations (which change things when they're run).
+
 ```
 
 1.  You have a `Books` table that has the attributes, `title`, `author` and
@@ -40,7 +65,9 @@ end
 column?
 
 ```sh
-  # < Your Response Here >
+
+bundle exec rails g migration RemoveAuthorFromBooks author
+
 ```
 
 1.  You now have an `Authors` table with `given_name`, `surname`, and `born_in`.
@@ -48,13 +75,18 @@ Given that you now have a `Books` and `Authors` table, which table will get the
 foreign key to allow for a join? Why?
 
 ```sh
-  # < Your Response Here >
+
+Books will get the foreign key because an author can have many books, but a
+book can only have one author.
+
 ```
 
 1.  Given your answer from above, what would the command be to _add_ the correct **reference** column, to the correct table?
 
 ```sh
-  # < Your Response Here >
+
+bundle exec rails g migration AddAuthorRefToBooks author:references
+
 ```
 
 BONUS
@@ -63,5 +95,7 @@ BONUS
 to the data store?
 
 ```sh
-  # < Your Response Here >
+
+You could add validates :title, uniqueness: true to the Book model.
+
 ```
