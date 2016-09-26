@@ -9,7 +9,7 @@ Place your responses inside the fenced code-blocks where indivated by comments.
 ```
 
 1.  Provide a database table structure and explain the Entity Relationship
-that describe a one-to-many relationship for `Students` and `Programs`.
+that describes a one-to-many relationship for `Students` and `Programs`.
 A `Student` has a `given_name`, `surname`, `hometown` and `nickname` and a
 `Program` has `state_date`, `end_date`, and `market`.
 
@@ -52,6 +52,15 @@ foreign key to allow for a join? Why?
 ```
 
 1.  Given your answer from above, what would the command be to _add_ the correct **reference** column, to the correct table?
+
+```sh
+  # < Your Response Here >
+```
+
+BONUS
+
+1.  How would you prevent a user from adding a `Book`, that has already been added
+to the data store?
 
 ```sh
   # < Your Response Here >
