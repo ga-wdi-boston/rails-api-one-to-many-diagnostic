@@ -5,7 +5,7 @@ Place your responses inside the fenced code-blocks where indivated by comments.
 1.  What is one purpose for having relationships in our API?
 
 ```sh
-  # < Your Response Here >
+  it allows you to see when two things may be connected. like ingredients in a recipe.
 ```
 
 1.  Provide a database table structure and explain the Entity Relationship
@@ -14,25 +14,39 @@ A `Student` has a `given_name`, `surname`, `hometown` and `nickname` and a
 `Program` has `state_date`, `end_date`, and `market`.
 
 ```sh
-  # < Your Response Here >
+  table student
+    given_name
+    surname
+    hometown
+    nickname
+    
+  table programs
+    start_date 
+    end_date
+    market
+
+the programs table would have many students because more than one student takes a program. so each student would have a program_id column. 
+
 ```
 
 1.  For the above example, what needs to be added to the Model files?
 
 ```rb
 class Student < ActiveRecord::Base
+  belongs_to :program
 end
 ```
 
 ```rb
 class Program < ActiveRecord::Base
+  has_many :students
 end
 ```
 
 1.  What is the purpose of our `schema.rb` file? How does it differ from a migration?
 
 ```sh
-  # < Your Response Here >
+ the schema file's purpose is to set up the structure of our tables.
 ```
 
 1.  You have a `Books` table that has the attributes, `title`, `author` and
@@ -40,7 +54,7 @@ end
 column?
 
 ```sh
-  # < Your Response Here >
+remove_columns(Books, author)
 ```
 
 1.  You now have an `Authors` table with `given_name`, `surname`, and `born_in`.
@@ -48,13 +62,13 @@ Given that you now have a `Books` and `Authors` table, which table will get the
 foreign key to allow for a join? Why?
 
 ```sh
-  # < Your Response Here >
+the foreign key goes to the book because that is where the id of the author will be. 
 ```
 
 1.  Given your answer from above, what would the command be to _add_ the correct **reference** column, to the correct table?
 
 ```sh
-  # < Your Response Here >
+rails generate migration AddAuthorToBook author_id:string
 ```
 
 BONUS
@@ -63,5 +77,6 @@ BONUS
 to the data store?
 
 ```sh
-  # < Your Response Here >
+  in the model
+    validates :name, :presence => true, :uniqueness => true
 ```
