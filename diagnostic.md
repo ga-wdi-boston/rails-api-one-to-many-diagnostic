@@ -5,7 +5,7 @@ Place your responses inside the fenced code-blocks where indivated by comments.
 1.  What is one purpose for having relationships in our API?
 
 ```sh
-  # < Your Response Here >
+Having relationships allows us to link multiple tables, keeping the data consisten throughout.
 ```
 
 1.  Provide a database table structure and explain the Entity Relationship
@@ -14,25 +14,30 @@ A `Student` has a `given_name`, `surname`, `hometown` and `nickname` and a
 `Program` has `state_date`, `end_date`, and `market`.
 
 ```sh
-  # < Your Response Here >
+Programs have many students
+
+Student Columns : `given_name`, `surname`, `hometown`, `nickname`, `program id`
+Program Columns : `state_date`, `end_date`, and `market`
 ```
 
 1.  For the above example, what needs to be added to the Model files?
 
 ```rb
 class Student < ActiveRecord::Base
+  belongs_to :Program
 end
 ```
 
 ```rb
 class Program < ActiveRecord::Base
+  has_many :students
 end
 ```
 
 1.  What is the purpose of our `schema.rb` file? How does it differ from a migration?
 
 ```sh
-  # < Your Response Here >
+The Schema file is the current state of your database, it includes all migrations that have occurred.
 ```
 
 1.  You have a `Books` table that has the attributes, `title`, `author` and
@@ -40,7 +45,8 @@ end
 column?
 
 ```sh
-  # < Your Response Here >
+bundle exec rails g migration RemoveAuthorFromBooks author
+
 ```
 
 1.  You now have an `Authors` table with `given_name`, `surname`, and `born_in`.
@@ -54,7 +60,6 @@ foreign key to allow for a join? Why?
 1.  Given your answer from above, what would the command be to _add_ the correct **reference** column, to the correct table?
 
 ```sh
-  # < Your Response Here >
 ```
 
 BONUS
